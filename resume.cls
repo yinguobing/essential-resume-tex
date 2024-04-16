@@ -5,7 +5,7 @@
 \ProcessOptions\relax
 \LoadClass{article}
 
-\RequirePackage{xcolor}
+\RequirePackage[dvipsnames]{xcolor}
 \RequirePackage{color}
 \RequirePackage{graphicx}
 \RequirePackage{setspace}
@@ -27,34 +27,35 @@
 
 \setcounter{secnumdepth}{0}
 
-%----------------------------------------------------------------------------------------
-%	FONT
-%----------------------------------------------------------------------------------------
-% fontspec allows you to use TTF/OTF fonts directly
-\usepackage{fontspec}
-\setmainfont{Noto}[
-    Path = /usr/share/fonts/opentype/noto/,
-    UprightFont = *SerifSC-Regular.otf,
-    BoldFont = *SansSC-Regular.ttf,
-    ItalicFont = *SerifSC-SemiBold.otf,
-]
-\XeTeXlinebreaklocale "zh"
+
+% FONT
+\usepackage{xeCJK}
+\setmainfont {Noto Serif SC}
+\setCJKmainfont {Noto Serif SC}
+\setCJKsansfont {Noto Sans SC}
+\setCJKmonofont {Noto Sans Mono CJK SC}
 \linespread{1.25}
 \usepackage{fontawesome5} % social icons
 
-%----------------------------------------------------------------------------------------
-%	PACKAGES
-%----------------------------------------------------------------------------------------
+% 页面几何
+\usepackage[includefoot, a4paper, left=20mm, top=20mm, centering]{geometry}
+
+% Header & footer
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead{}
+\fancyfoot[C]{\thepage \hspace{1pt} / \pageref{LastPage}}
+
+% 引用URL
 \usepackage{url}
+
+% 段落间距
 \usepackage{parskip}
 
-%other packages for formatting
-\usepackage[dvipsnames]{xcolor}
-\usepackage[a4paper, left=20mm, top=20mm, centering]{geometry}
-
-%custom \section
+% 标题外观
 \usepackage{titlesec}
-
 \titleformat
 {\section}
 {\normalsize\bfseries}
@@ -62,25 +63,17 @@
 {1em}
 {}
 [\titlerule]
-
 \titlespacing{\section}{0pt}{12pt}{10pt}
-
-
-%debug page outer frames
-% \usepackage{showframe}
-
-% non-numbered pages
-\pagestyle{empty}
 
 % 新指令
 
 % 姓名
 \newcommand{\name}[1]{\begin{spacing}{0.8}\huge{#1}\end{spacing}}
 % 电话
-\newcommand{\phone}[1]{\small\href{tel:#1}{\raisebox{-0.05\height}{\faPhone*} #1}}
+\newcommand{\phone}[1]{\small\href{tel:#1}{\faPhone* #1}}
 % 电子邮件
-\newcommand{\mail}[1]{\small\href{mailto:#1}{\raisebox{-0.05\height}{\faEnvelope[regular]} #1}}
+\newcommand{\mail}[1]{\small\href{mailto:#1}{\faEnvelope[regular] #1}}
 % 个人博客
-\newcommand{\blog}[1]{\small\href{https://#1}{\raisebox{-0.05\height}{\faChrome} #1}}
+\newcommand{\blog}[1]{\small\href{https://#1}{{\faChrome} #1}}
 % Github
-\newcommand{\github}[1]{\small\href{https://github.com/#1}{\raisebox{-0.05\height}{\faGithub} github.com/#1}}
+\newcommand{\github}[1]{\small\href{https://github.com/#1}{{\faGithub} github.com/#1}}
